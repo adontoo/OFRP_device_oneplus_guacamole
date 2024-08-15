@@ -40,7 +40,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_USE_GREEN_LED=1
 	
 	# "guacamole" Specific
-	export OF_AB_DEVICE=1
+	export FOX_AB_DEVICE=1
 	export TARGET_DEVICE_ALT="guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
 	export OF_TARGET_DEVICES="guacamole,guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
 
