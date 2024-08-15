@@ -42,8 +42,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# "guacamole" Specific
 	export FOX_AB_DEVICE=1
 	export TARGET_DEVICE_ALT="guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
-	export OF_TARGET_DEVICES="guacamole,guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
-
+	export FOX_TARGET_DEVICES="guacamole,guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
 	export OF_USE_MAGISKBOOT=1
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
