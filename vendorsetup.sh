@@ -63,9 +63,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=misc/Magisk-v27.0.zip
 
     	# OTA
-	export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
     	export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
-	export OF_DISABLE_MIUI_OTA_BY_DEFAULT=0
+	export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
     
    	 # R12.1 Settings
 	export FOX_VERSION="R12.1"
