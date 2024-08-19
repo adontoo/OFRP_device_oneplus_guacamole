@@ -9,6 +9,8 @@ $(call inherit-product, device/oneplus/sm8150-common/common.mk)
 # Get non-open-source specific aspects
 #$(call inherit-product, vendor/oneplus/guacamole/guacamole-vendor.mk)
 
+ALLOW_MISSING_DEPENDENCIES=true
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -60,7 +62,8 @@ TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_EXTRA_LANGUAGES := false
+TW_EXTRA_LANGUAGES := true
+TW_DEFAULT_LANGUAGE="zh_CN"
 TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
 TW_INCLUDE_RESETPROP := true
