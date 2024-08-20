@@ -59,7 +59,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_PATCH_AVB20=1
     export FOX_DELETE_AROMAFM=1
     export FOX_ENABLE_APP_MANAGER=1
-	export FOX_USE_SPECIFIC_MAGISK_ZIP=/tmp/misc/magisk/Magisk-v27.0.zip
+	export FOX_USE_SPECIFIC_MAGISK_ZIP=$(pwd)/misc/Magisk-v27.0.zip
 
     # OTA
     export OF_KEEP_DM_VERITY=1
@@ -67,10 +67,10 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
     export OF_DISABLE_MIUI_OTA_BY_DEFAULT=0
     
-    # R11.1 Settings
+    # R12.1 Settings
     export FOX_VERSION="R12.1"
     export OF_MAINTAINER="Adontoo"
-    export OF_MAINTAINER_AVATAR="/tmp/misc/Adontoo.jpg"
+    export OF_MAINTAINER_AVATAR="misc/Adontoo.jpg"
     export FOX_BUILD_TYPE="Stable-Unofficial"
 
 	# Screen Settings
@@ -93,7 +93,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
               PURPLE='\033[0;35m'
               echo -e "${RED}-- File \"$OF_MAINTAINER_AVATAR\" not found  ...${NC}"
               echo -e "${ORANGE}-- Downloading...${NC}"
-              mkdir -p /tmp/misc/magisk/
+              mkdir -p misc
               curl https://raw.githubusercontent.com/adontoo/pixelos_manifest/icon/snippets/icon.jpg >> $OF_MAINTAINER_AVATAR
               echo -e "${BLUE}-- Successfully Downloaded the Avatar Image \"$OF_MAINTAINER_AVATAR\" ...${NC}"
               echo -e "${PURPLE}-- Using A Custom Maintainer Avatar from the Downloaded Image \"$OF_MAINTAINER_AVATAR\" ...${NC}"
@@ -112,7 +112,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
               PURPLE='\033[0;35m'
               echo -e "${RED}-- File \"$OF_MAGISK\" not found  ...${NC}"
               echo -e "${ORANGE}-- Downloading...${NC}"
-              wget -O /tmp/misc/magisk/Magisk-v27.0.zip https://github.com/topjohnwu/Magisk/releases/download/v27.0/Magisk-v27.0.apk
+              wget -O $(pwd)/misc/Magisk-v27.0.zip https://github.com/topjohnwu/Magisk/releases/download/v27.0/Magisk-v27.0.apk
               echo -e "${BLUE}-- Successfully Downloaded the Magisk.zip File \"$OF_MAGISK\" ...${NC}"
               echo -e "${PURPLE}-- Using A Custom Magisk.zip from the Downloaded file \"$OF_MAGISK\" ...${NC}"
               echo -e "${GREEN}-- Done!"
