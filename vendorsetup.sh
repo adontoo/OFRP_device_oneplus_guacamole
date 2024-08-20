@@ -34,46 +34,44 @@ if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
 fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
-   	export TW_DEFAULT_LANGUAGE="zh_CN"
 	export LC_ALL="C"
  	export ALLOW_MISSING_DEPENDENCIES=true
 	export OF_USE_GREEN_LED=1
 	
 	# "guacamole" Specific
-	export OF_AB_DEVICE=1
+	export FOX_AB_DEVICE=1
 	export TARGET_DEVICE_ALT="guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
-	export OF_TARGET_DEVICES="guacamole,guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
-
+	export FOX_TARGET_DEVICES="guacamole,guacamoleb,guacamolec,OnePlus7Pro,OnePlus7ProNR"
 	export OF_USE_MAGISKBOOT=1
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
-	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
-	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+	export OF_TWRP_COMPATIBILITY_MODE=1
 	export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
 	export OF_NO_MIUI_PATCH_WARNING=1
 	export OF_FBE_METADATA_MOUNT_IGNORE=1
 	export FOX_USE_BASH_SHELL=1
 	export FOX_ASH_IS_BASH=1
 	export FOX_USE_TAR_BINARY=1
+ 	export FOX_USE_LZ4_BINARY=1
+  	export FOX_USE_ZSTD_BINARY=1
 	export FOX_USE_SED_BINARY=1
 	export FOX_USE_XZ_UTILS=1
 	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
-    export OF_QUICK_BACKUP_LIST="/boot;/data;"
+	export OF_QUICK_BACKUP_LIST="/boot;/data;"
 	export OF_PATCH_AVB20=1
-    export FOX_DELETE_AROMAFM=1
-    export FOX_ENABLE_APP_MANAGER=1
-	export FOX_USE_SPECIFIC_MAGISK_ZIP=/tmp/magisk/Magisk-v27.0.zip
+	export FOX_DELETE_AROMAFM=1
+	export FOX_ENABLE_APP_MANAGER=1
+	export FOX_USE_SPECIFIC_MAGISK_ZIP=/tmp/misc/Magisk-v27.0.zip
 
-    # OTA
-    export OF_KEEP_DM_VERITY=1
-    export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
-    export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
-    export OF_DISABLE_MIUI_OTA_BY_DEFAULT=0
+	# OTA
+	export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
+	export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
     
-    # R11.1 Settings
-    export FOX_VERSION="R12.1"
-    export OF_MAINTAINER="Adontoo"
-    export OF_MAINTAINER_AVATAR="misc/Adontoo.png"
-    export FOX_BUILD_TYPE="Stable-Unofficial"
+   	 # R12.1 Settings
+	export FOX_VERSION="R12.1"
+	export OF_MAINTAINER="Adontoo"
+	export OF_MAINTAINER_AVATAR="/tmp/misc/Adontoo.jpg"
+	export OF_MAGISK="/tmp/misc/Magisk-v27.0.zip"
+	export FOX_BUILD_TYPE="Stable-Unofficial"
 
 	# Screen Settings
 	export OF_SCREEN_H=2340
@@ -81,9 +79,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_STATUS_INDENT_RIGHT=48
 	export OF_ALLOW_DISABLE_NAVBAR=0
 
-	# Run a process after formatting data to work-around MTP issues
-	export OF_RUN_POST_FORMAT_PROCESS=1
-	
 	# Avatar Settings
     if [ -n "$OF_MAINTAINER_AVATAR" ]; then
         if [ ! -f "$OF_MAINTAINER_AVATAR" ]; then
@@ -95,15 +90,15 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
               PURPLE='\033[0;35m'
               echo -e "${RED}-- File \"$OF_MAINTAINER_AVATAR\" not found  ...${NC}"
               echo -e "${ORANGE}-- Downloading...${NC}"
-              mkdir -p misc
-              curl https://raw.githubusercontent.com/adontoo/pixelos_manifest/icon/snippets/icon.jpg >> $OF_MAINTAINER_AVATAR
+              mkdir -p /tmp/misc
+              curl https://github.com/adontoo/pixelos_manifest/blob/icon/snippets/icon.jpg >> $OF_MAINTAINER_AVATAR
               echo -e "${BLUE}-- Successfully Downloaded the Avatar Image \"$OF_MAINTAINER_AVATAR\" ...${NC}"
               echo -e "${PURPLE}-- Using A Custom Maintainer Avatar from the Downloaded Image \"$OF_MAINTAINER_AVATAR\" ...${NC}"
               echo -e "${GREEN}-- Done!"
         fi
     fi
-
-    # Check if Magisk.zip exist。
+    
+    	# Check if Magisk.zip exist。
     if [ -n "$FOX_USE_SPECIFIC_MAGISK_ZIP" ]; then
     	if [ ! -f "$OF_MAGISK" ]; then
               # some colour codes
@@ -114,7 +109,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
               PURPLE='\033[0;35m'
               echo -e "${RED}-- File \"$OF_MAGISK\" not found  ...${NC}"
               echo -e "${ORANGE}-- Downloading...${NC}"
-              wget -O /tmp/magisk/Magisk-v27.0.zip https://github.com/topjohnwu/Magisk/releases/download/v27.0/Magisk-v27.0.apk
+              wget -O /tmp/misc/Magisk-v27.0.zip https://github.com/topjohnwu/Magisk/releases/download/v27.0/Magisk-v27.0.apk
               echo -e "${BLUE}-- Successfully Downloaded the Magisk.zip File \"$OF_MAGISK\" ...${NC}"
               echo -e "${PURPLE}-- Using A Custom Magisk.zip from the Downloaded file \"$OF_MAGISK\" ...${NC}"
               echo -e "${GREEN}-- Done!"
